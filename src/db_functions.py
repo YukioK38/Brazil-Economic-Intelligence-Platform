@@ -69,8 +69,9 @@ def fetch_indicator_values(cur, indicator_id):
         ORDER BY date
     """, (indicator_id, ))
     rows = cur.fetchall()
-    return(pd.DataFrame(rows, columns=["date", "value"]))
-
+    df = pd.DataFrame(rows, columns=["date", "value"])
+    df['value'] = df['value'].astype(float)
+    return(df)
 
 '''
 # example with the selic series from data collection

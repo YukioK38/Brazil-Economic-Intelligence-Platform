@@ -36,19 +36,8 @@ def get_sidra_series(
 
     resp = requests.get(url, timeout=60)
     resp.raise_for_status()
-
     data = resp.json()
-
-
-    print("Tamanho da lista:", len(data))
-    print("Primeiro elemento (deveria ser um dado, não o cabeçalho):", data[0])
-
     data = data[1:]  # remove cabeçalho
-    df = pd.DataFrame(data)
-    print("Primeira linha do DataFrame:")
-    print(df.iloc[0])
-
-
     df = pd.DataFrame(data)
 
     df["date"] = df["D3C"].apply(_period_to_date)
@@ -58,6 +47,7 @@ def get_sidra_series(
     return df[["date", "value", "sidra_table"]].sort_values("date").reset_index(drop=True)
 
 
+""" test function
 if __name__ == "__main__":
     pib = get_sidra_series(
         table=1620,
@@ -67,3 +57,4 @@ if __name__ == "__main__":
     )
     print(pib.head())
     print(pib.dtypes)
+"""

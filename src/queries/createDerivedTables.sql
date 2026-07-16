@@ -3,7 +3,7 @@ CREATE TABLE derived_indicators (
     name VARCHAR(100) NOT NULL,
     base_indicator_id INTEGER REFERENCES indicators(indicator_id),
     formula_desc TEXT,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
     UNIQUE (name, base_indicator_id)
 );
 
