@@ -7,13 +7,7 @@ from psycopg2.extras import execute_values
 
 def get_connection():
     load_dotenv()
-    return psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-    )
+    return psycopg2.connect(dsn=os.getenv("DATABASE_URL"))
 
 def upsert_indicator(cur, external_code, name, source, frequency, unit):
     # insert data and returns index, if conflict, return the index
