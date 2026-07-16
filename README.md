@@ -198,28 +198,7 @@ Automate updates.
 
 ### Implementation
 
-Airflow DAGs will:
-
-1. Collect new data
-2. Validate data
-3. Load database
-4. Execute transformations
-
----
-
-## 1.6 Containerization
-
-### Objective
-
-Improve reproducibility.
-
-### Implementation
-
-Docker containers for:
-
-* PostgreSQL
-* Airflow
-* Application code
+Workflow viw github actions
 
 ---
 
