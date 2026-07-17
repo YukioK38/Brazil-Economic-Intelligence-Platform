@@ -14,14 +14,12 @@ def execute_sql_file(conn, filepath):
 if __name__ == "__main__":
     dsn = os.getenv("DATABASE_URL")
     if not dsn:
-        raise Exception("DATABASE_URL não definida no .env")
+        raise Exception("DATABASE_URL NOT DEFINED ON .env")
     
     conn = psycopg2.connect(dsn)
     try:
-        print("Criando tabelas base...")
-        execute_sql_file(conn, "src\queries\createTables.sql")
-        print("Criando tabelas derivadas...")
-        execute_sql_file(conn, "src\queries\createDerivedTables.sql")
-        print("Tabelas criadas com sucesso!")
+        execute_sql_file(conn, os.path.join("src", "queries", "createTables.sql"))
+        execute_sql_file(conn, os.path.join("src", "queries", "createDerivedTables.sql"))
+        print('Tables created')
     finally:
         conn.close()
