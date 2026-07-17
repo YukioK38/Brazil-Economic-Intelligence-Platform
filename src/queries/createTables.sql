@@ -20,4 +20,4 @@ CREATE TABLE IF NOT EXISTS indicator_values (
 
 -- most queries would be interested in getting the series values for a particular time period
 -- so this index is enough for now
-CREATE INDEX idx_indicator_values_lookup ON indicator_values (indicator_id, date);
+CREATE INDEX IF NOT EXISTS idx_indicator_values_lookup ON indicator_values (indicator_id, date);
