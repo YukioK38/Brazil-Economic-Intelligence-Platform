@@ -1,4 +1,4 @@
-CREATE TABLE indicators (
+CREATE TABLE IF NOT EXISTS indicators (
     indicator_id SERIAL PRIMARY KEY,
     external_code VARCHAR(50) UNIQUE NOT NULL, -- code for the series on the API
     indicator_name VARCHAR(100) NOT NULL, -- descriptive name for the series
@@ -9,7 +9,7 @@ CREATE TABLE indicators (
     );
 
 
-CREATE TABLE indicator_values (
+CREATE TABLE IF NOT EXISTS indicator_values (
     id SERIAL PRIMARY KEY,
     indicator_id INTEGER NOT NULL REFERENCES indicators(indicator_id), -- foreign key to indicators table
     date DATE NOT NULL,

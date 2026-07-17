@@ -24,13 +24,8 @@ def get_bacen_series(code:int, start_date:str, end_date: str | None = None) -> p
         param['dataInicial'] = start_date
         param['dataFinal'] = end_date
 
-        print(resp.status_code)
-        print(resp.text[:500])
-        headers = {"User-Agent": "Mozilla/5.0"}
-        resp = requests.get(url, params=param, headers=headers, timeout=60)
+        resp = requests.get(url, params=param, timeout=60)
         resp.raise_for_status()
-        if not resp.text.strip():
-            raise ValueError(f"Resposta vazia da série {code}")
         all_chunks.append(pd.DataFrame(resp.json()))
 
         current_start = current_end + pd.Timedelta(days=1)

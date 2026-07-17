@@ -1,4 +1,4 @@
-CREATE TABLE derived_indicators (
+CREATE TABLE IF NOT EXISTS derived_indicators (
     derived_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     base_indicator_id INTEGER REFERENCES indicators(indicator_id),
@@ -8,7 +8,7 @@ CREATE TABLE derived_indicators (
 );
 
 
-CREATE TABLE derived_values (
+CREATE TABLE IF NOT EXISTS derived_values (
     id SERIAL PRIMARY KEY,
     derived_id INTEGER NOT NULL REFERENCES derived_indicators(derived_id), -- foreign key to indicators table
     date DATE NOT NULL,
