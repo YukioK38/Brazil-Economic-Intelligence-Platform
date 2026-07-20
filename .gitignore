@@ -1,0 +1,26 @@
+# Arquivos de ambiente (variáveis sensíveis)
+.env
+.env.local
+.env.*.local
+
+# Cache e arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Pastas de ambientes virtuais (recomendo ignorar também)
+venv/
+env/
+.venv/
+.virtualenv/
+
+# Arquivos de editores (opcional, mas útil)
+.vscode/
+.idea/
+*.iml
