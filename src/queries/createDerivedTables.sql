@@ -17,4 +17,4 @@ CREATE TABLE IF NOT EXISTS derived_values (
     UNIQUE (derived_id, date) -- avoid duplicates based on date and id
 );
 
-CREATE INDEX IF NOT EXISTS  idx_derived_values_lookup ON derived_values (derived_id, date);
+CREATE INDEX idx_derived_values_lookup ON derived_values (derived_id, date);

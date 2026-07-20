@@ -21,8 +21,8 @@ def get_bacen_series(code:int, start_date:str, end_date: str | None = None) -> p
         # gets a time series from BACEN, using the code and start/end dates. Returns a pandas dataframe
         url = f'https://api.bcb.gov.br/dados/serie/bcdata.sgs.{code}/dados'
         param = {'formato': 'json'}
-        param['dataInicial'] = current_start.strftime('%d/%m/%Y')
-        param['dataFinal'] = current_end.strftime('%d/%m/%Y')
+        param['dataInicial'] = start_date
+        param['dataFinal'] = end_date
 
         resp = requests.get(url, params=param, timeout=60)
         resp.raise_for_status()

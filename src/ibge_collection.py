@@ -1,20 +1,24 @@
 import requests
 import pandas as pd
 
-def _period_to_date(period_code: str) -> pd.Timestamp:
+def _period_to_date(period_code: str, frequency: str) -> pd.Timestamp:
 
     year = int(period_code[:4])
     suffix = int(period_code[4:6])
 
-    if suffix <= 4:
+    if frequency == "quarterly":
         month = (suffix - 1) * 3 + 1
-    else:
+    elif frequency == "monthly":
         month = suffix
+    else:
+        raise ValueError(f"Frequency must be 'quarterly' or 'monthly', received: {frequency}")
+
     return pd.Timestamp(year=year, month=month, day=1)
 
 def get_sidra_series(
         table: int, # SIDRA table code
         variable: int, # Variable code inside table
+        frequency: str,
         territory_level: str = "n1", # n1 for Brazil
         territory_code: str = "all", # all or particular region
         period: str = "all",
@@ -40,7 +44,7 @@ def get_sidra_series(
     data = data[1:]  # remove cabeçalho
     df = pd.DataFrame(data)
 
-    df["date"] = df["D3C"].apply(_period_to_date)
+    df["date"] = df["D3C"].apply(lambda code: _period_to_date(code, frequency))
     df["value"] = pd.to_numeric(df["V"], errors = "coerce")
     df["sidra_table"] = table
 
