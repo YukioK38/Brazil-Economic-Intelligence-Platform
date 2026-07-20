@@ -2,8 +2,8 @@ name: ETL Pipeline
 
 on:
   schedule:
-    # Roda todo dia às 06:00 UTC (03:00 no horário de Brasília, sem horário de verão)
-    - cron: '0 6 * * *'
+    # Roda todo dia às 13:00 UTC (10:00 no horário de Brasília, sem horário de verão)
+    - cron: '0 13 * * *'   # 10:00 BRT (UTC-3)
   workflow_dispatch: {}
     # Permite rodar manualmente pela aba "Actions" no GitHub
 
