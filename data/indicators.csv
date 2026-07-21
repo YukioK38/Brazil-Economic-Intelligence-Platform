@@ -1,0 +1,12 @@
+indicator_id,external_code,indicator_name,source,frequency,unit,created_at
+1,432,SELIC Meta,BACEN,daily,%,2026-07-16 20:43:07.186903
+2,433,IPCA,BACEN,monthly,%,2026-07-16 20:43:09.816268
+3,13522,IPCA Acumulado 12m,BACEN,monthly,%,2026-07-16 20:43:11.970311
+4,188,INPC,BACEN,monthly,%,2026-07-16 20:43:15.760453
+5,189,IGP-M,BACEN,monthly,%,2026-07-16 20:43:17.591924
+6,24364,IBC-Br,BACEN,monthly,index,2026-07-16 20:43:19.029038
+7,1,Câmbio USD/BRL,BACEN,daily,R$,2026-07-16 20:43:30.293865
+8,IBGE_1620_583_90707,PIB Trimestral (índice de volume),IBGE,quarterly,index (1995=100),2026-07-16 20:43:31.331946
+90,PIM-PF,Industrial Production,IBGE,monthly,index 100=100% of last month,2026-07-20 14:08:29.864979
+91,unemp_rate,Unemployment rate,IBGE,monthly,% (Rolling quarter),2026-07-20 14:08:30.256410
+92,retail_sales,Retail sales,IBGE,monthly,index (100=100% of 2022),2026-07-20 14:08:30.754074

@@ -1,0 +1,7 @@
+derived_id,name,base_indicator_id,formula_desc,created_at
+1,SELIC Meta_daily_variation,1,Daily Variation of SELIC Meta,2026-07-16 20:43:07.629129
+2,IPCA_yoy_variation,2,Yoy Variation of IPCA,2026-07-16 20:43:09.876023
+3,INPC_yoy_variation,4,Yoy Variation of INPC,2026-07-16 20:43:15.825232
+4,IGP-M_yoy_variation,5,Yoy Variation of IGP-M,2026-07-16 20:43:17.643406
+5,Câmbio USD/BRL_daily_variation,7,Daily Variation of Câmbio USD/BRL,2026-07-16 20:43:30.653030
+36,SELIC meta_daily_variation,1,Daily Variation of SELIC meta,2026-07-20 13:18:43.661890
