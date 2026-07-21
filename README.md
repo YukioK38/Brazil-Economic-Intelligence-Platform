@@ -5,6 +5,8 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-2088FF)](https://github.com/features/actions)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
+This dataset is also available on [Kaggle](https://www.kaggle.com/datasets/fabiokitsuwa/brazil-macroeconomic-indicators)!
+
 An automated ETL pipeline that continuously collects official Brazilian macroeconomic indicators from **BACEN** and **IBGE**, transforms heterogeneous datasets into a standardized format, and stores historical time series in a **PostgreSQL** database hosted on **Neon**.
 
 The project simulates a production-style data engineering workflow by combining automated data ingestion, data transformation, database modeling, cloud deployment, and scheduled execution.
