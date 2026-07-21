@@ -1,533 +1,327 @@
-# Project Overview: Brazil Economic Intelligence Platform
+# 🇧🇷 Brazil Economic Data Pipeline
 
-## 1. Project Summary
+[![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791)](https://neon.tech/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-2088FF)](https://github.com/features/actions)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**Project Name:** Brazil Economic Intelligence Platform
+An automated ETL pipeline that continuously collects official Brazilian macroeconomic indicators from **BACEN** and **IBGE**, transforms heterogeneous datasets into a standardized format, and stores historical time series in a **PostgreSQL** database hosted on **Neon**.
 
-**Objective:**
-Develop an end-to-end data platform that automatically collects Brazilian macroeconomic indicators from public sources, stores and transforms the data in a structured database, generates business-oriented analyses and dashboards, and applies machine learning models to identify and predict economic conditions.
-
-The project aims to demonstrate skills relevant to:
-
-* Data Engineering
-* Data Analysis
-* Data Science
-* Business Intelligence
-
-while solving a realistic economic intelligence problem similar to those found in banks, fintechs, consulting firms, and corporate planning departments.
+The project simulates a production-style data engineering workflow by combining automated data ingestion, data transformation, database modeling, cloud deployment, and scheduled execution.
 
 ---
 
-## 2. Business Problem
-
-Economic indicators are scattered across multiple government databases and are frequently updated.
-
-Analysts often spend considerable time:
-
-* Collecting data manually
-* Cleaning datasets
-* Merging indicators
-* Producing reports
-* Monitoring economic trends
-
-This project automates the entire process and creates a centralized platform capable of:
-
-* Monitoring Brazil's economic conditions
-* Identifying relationships between indicators
-* Supporting decision-making
-* Generating forecasts
-
----
-
-## 3. Project Architecture
-
-```text
-Public Data Sources
-(BACEN, IBGE, IPEA)
-
-        │
-        ▼
-
-Data Ingestion Pipeline
-
-        │
-        ▼
-
-PostgreSQL Database
-
-        │
-        ▼
-
-Data Transformation Layer
-(SQL + Python)
-
-        │
-        ▼
-
-Analytics Layer
-
-        ├─────────────┐
-        ▼             ▼
-
-Dashboard      Machine Learning
-
-        └──────┬──────┘
-               ▼
-
-Economic Intelligence Platform
-```
-
----
-
-# Phase 1 – Data Engineering
-
-## Goal
-
-Build a robust data pipeline capable of collecting and storing macroeconomic data automatically.
-
----
-
-## 1.1 Data Source Selection
-
-### Initial Sources
-
-#### BACEN SGS API
-
-Examples:
-
-* SELIC Rate
-* IBC-Br
-* Exchange Rate
-* Credit Indicators
-* Default Rates
-
-#### Optional Future Sources
-
-* IBGE
-* IPEA Data
-* Tesouro Nacional
-* B3
-
----
-
-## 1.2 Data Ingestion
-
-### Objective
-
-Automatically retrieve economic indicators.
-
-### Implementation
-
-Python scripts will:
-
-* Connect to APIs
-* Download data
-* Validate responses
-* Standardize formats
-
-### Technologies
+# Skills Demonstrated
 
 * Python
-* Requests
-* Pandas
-
----
-
-## 1.3 Database Design
-
-### Objective
-
-Create a structured storage layer.
-
-### Implementation
-
-Use PostgreSQL to store:
-
-#### Indicator Metadata
-
-```text
-indicator_id
-indicator_name
-source
-frequency
-unit
-```
-
-#### Indicator Values
-
-```text
-date
-indicator_id
-value
-```
-
----
-
-## 1.4 ETL Process
-
-### Objective
-
-Transform raw data into analysis-ready datasets.
-
-### Tasks
-
-* Handle missing values
-* Standardize dates
-* Remove duplicates
-* Create derived indicators
-
-Examples:
-
-```text
-Inflation YoY
-
-Credit Growth Rate
-
-SELIC Variation
-
-Economic Momentum
-```
-
----
-
-## 1.5 Workflow Orchestration
-
-### Objective
-
-Automate updates.
-
-### Implementation
-
-Airflow DAGs will:
-
-1. Collect new data
-2. Validate data
-3. Load database
-4. Execute transformations
-
----
-
-## 1.6 Containerization
-
-### Objective
-
-Improve reproducibility.
-
-### Implementation
-
-Docker containers for:
-
+* REST API Integration
+* ETL Pipeline Development
+* Data Cleaning & Transformation
+* Time Series Processing
 * PostgreSQL
-* Airflow
-* Application code
+* SQLAlchemy
+* Database Modeling
+* Incremental Data Loading
+* GitHub Actions
+* Cloud Database Deployment
 
 ---
 
-# Phase 2 – Data Analysis
+# Project Highlights
 
-## Goal
-
-Understand the behavior of economic indicators and identify meaningful relationships.
-
----
-
-## 2.1 Exploratory Data Analysis
-
-### Questions
-
-* How has inflation evolved over time?
-* How does SELIC react to inflation?
-* How does economic activity respond to interest rates?
-
-### Deliverables
-
-* Time series visualizations
-* Summary statistics
-* Correlation analysis
+* 11 macroeconomic indicators
+* 2 official government APIs
+* Automated ETL pipeline
+* PostgreSQL cloud database
+* Automatic derived indicator generation
+* Scheduled execution with GitHub Actions
 
 ---
 
-## 2.2 Lag Analysis
+# Project Objectives
 
-### Objective
+This project was designed to simulate a real-world data engineering pipeline.
 
-Investigate delayed effects.
+Its main objectives are to:
 
-Examples:
-
-* Does SELIC affect inflation after 6 months?
-* Does credit growth anticipate economic expansion?
-
-Methods:
-
-* Cross-correlation
-* Lagged features
+* Automatically collect official Brazilian macroeconomic indicators
+* Standardize datasets obtained from different public APIs
+* Store historical observations in a relational database
+* Eliminate manual data collection
+* Build a reusable data source for dashboards, analytics, and machine learning projects
 
 ---
 
-## 2.3 Economic Cycle Analysis
+# Why This Project?
 
-### Objective
+Macroeconomic indicators are published independently by different Brazilian government institutions, each exposing data through distinct APIs, structures, and update frequencies.
 
-Identify economic phases.
+Analysts frequently spend significant time downloading spreadsheets, cleaning datasets, and organizing historical series before beginning any analysis.
 
-Potential labels:
-
-```text
-Expansion
-
-Slowdown
-
-Recession
-
-Recovery
-```
-
-Methods:
-
-* Rule-based classification
-* Historical economic periods
+This project automates that workflow by creating a centralized and continuously updated database that is immediately ready for analytical consumption.
 
 ---
 
-## 2.4 Dashboard Development
+# Data Pipeline
 
-### Objective
+```mermaid
+flowchart LR
 
-Provide interactive visualization.
+BACEN["BACEN SGS API"]
+IBGE["IBGE SIDRA API"]
 
-### Suggested Dashboard Sections
+BACEN --> ETL
+IBGE --> ETL
 
-#### Macroeconomic Overview
+ETL["Python ETL"]
 
-* Inflation
-* SELIC
-* Exchange Rate
-* IBC-Br
+ETL --> RAW["Raw Data"]
 
-#### Credit Market
+RAW --> DERIVED["Derived Indicators"]
 
-* Credit Growth
-* Default Rates
+DERIVED --> POSTGRES["PostgreSQL (Neon)"]
 
-#### Economic Cycle Monitor
+POSTGRES --> ANALYTICS["Dashboards / Analytics / Machine Learning"]
 
-* Current phase
-* Historical phases
-
-### Technologies
-
-* Power BI
-
-or
-
-* Tableau
-
----
-
-# Phase 3 – Data Science
-
-## Goal
-
-Develop predictive models using economic indicators.
-
----
-
-## 3.1 Problem Definition
-
-Two possible approaches:
-
-### Classification
-
-Predict economic conditions:
-
-```text
-Expansion
-Recovery
-Slowdown
-Recession
-```
-
-### Regression
-
-Predict future values of:
-
-* Inflation
-* SELIC
-* IBC-Br
-
----
-
-## 3.2 Feature Engineering
-
-Create features such as:
-
-```text
-Lagged indicators
-
-Moving averages
-
-Growth rates
-
-Volatility measures
-
-Rolling statistics
+GITHUB["GitHub Actions"] --> ETL
 ```
 
 ---
 
-## 3.3 Model Development
+# Technology Stack
 
-Baseline:
-
-* Logistic Regression
-* Random Forest
-
-Advanced:
-
-* XGBoost
-* LightGBM
-
-Time Series:
-
-* Prophet
-* XGBoost Forecasting
+| Category        | Technologies      |
+| --------------- | ----------------- |
+| Programming     | Python 3.11+      |
+| Data Processing | Pandas            |
+| API Access      | Requests          |
+| Database        | PostgreSQL (Neon) |
+| ORM             | SQLAlchemy        |
+| Database Driver | psycopg2          |
+| Configuration   | python-dotenv     |
+| Automation      | GitHub Actions    |
+| Version Control | Git & GitHub      |
 
 ---
 
-## 3.4 Model Evaluation
+# Data Sources
 
-### Classification Metrics
+The pipeline integrates official public datasets from two primary sources.
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
+| Source             | Description                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| **BACEN SGS API**  | Interest rates, inflation, exchange rates and economic activity indicators |
+| **IBGE SIDRA API** | GDP, industrial production, retail sales and labor market statistics       |
 
-### Regression Metrics
+## Current Indicators
 
-* RMSE
-* MAE
-* MAPE
+### BACEN
 
----
+| Indicator                      | Code  | Frequency | Transformation  |
+| ------------------------------ | ----- | --------- | --------------- |
+| SELIC Target Rate              | 432   | Daily     | Daily Variation |
+| IPCA Inflation                 | 433   | Monthly   | Year-over-Year  |
+| IPCA (12-Month Accumulated)    | 13522 | Monthly   | None            |
+| INPC Inflation                 | 188   | Monthly   | Year-over-Year  |
+| IGP-M Inflation                | 189   | Monthly   | Year-over-Year  |
+| IBC-Br Economic Activity Index | 24364 | Monthly   | None            |
+| USD/BRL Exchange Rate          | 1     | Daily     | Daily Variation |
 
-## 3.5 Model Explainability
+### IBGE
 
-### Objective
-
-Understand model decisions.
-
-### Techniques
-
-* SHAP
-* Feature Importance
-
-Questions:
-
-* Which indicators contribute most to predictions?
-* Which variables anticipate economic slowdowns?
-
----
-
-# Phase 4 – Documentation & Communication
-
-## Goal
-
-Present results in a professional manner.
+| Indicator                         | Frequency |
+| --------------------------------- | --------- |
+| Quarterly GDP (Volume Index)      | Quarterly |
+| Industrial Production (PIM-PF)    | Monthly   |
+| Retail Sales Volume               | Monthly   |
+| Unemployment Rate (PNAD Contínua) | Monthly   |
 
 ---
 
-## 4.1 Main Repository README
+# ETL Process
 
-Contents:
+## Extract
 
-* Project overview
-* Architecture diagram
-* Technologies
-* Results
-* Dashboard screenshots
-* Model performance
+The pipeline retrieves macroeconomic indicators directly from official public APIs.
 
----
+Current sources include:
 
-## 4.2 Data Engineering Documentation
+* BACEN SGS API
+* IBGE SIDRA API
 
-Separate README:
+## Transform
 
-* Database schema
-* ETL design
-* Airflow workflows
-* Docker setup
+Before loading the data into PostgreSQL, several preprocessing steps are automatically applied:
 
----
+* Date standardization
+* Numeric conversion
+* Missing value handling
+* Duplicate removal
+* Metadata enrichment
+* Frequency normalization
+* Daily variation calculation
+* Year-over-Year variation calculation
 
-## 4.3 Data Analysis Documentation
+Different indicators receive different transformation rules according to their statistical characteristics.
 
-Separate README:
+## Load
 
-* Business questions
-* Visualizations
-* Insights
-* Conclusions
+The loading process is divided into two layers.
 
----
+### Raw Layer
 
-## 4.4 Machine Learning Documentation
+Stores the original observations exactly as published by BACEN and IBGE.
 
-Separate README:
+**Tables**
 
-* Feature engineering
-* Modeling process
-* Evaluation
-* Explainability
+* indicators
+* indicator_values
 
----
+### Derived Layer
 
-# Expected Skills Demonstrated
+Stores analytical indicators generated during the transformation stage.
 
-## Data Engineering
+Examples include:
 
-* Python
-* PostgreSQL
-* SQL
-* ETL
-* Airflow
-* Docker
-* API Integration
+* Daily percentage variation
+* Year-over-Year inflation
 
-## Data Analysis
+**Tables**
 
-* EDA
-* Statistics
-* Data Visualization
-* Business Analysis
-* Dashboard Development
-
-## Data Science
-
-* Machine Learning
-* Feature Engineering
-* Model Evaluation
-* Time Series Analysis
-* Explainable AI (SHAP)
+* derived_indicators
+* derived_values
 
 ---
 
-# Final Deliverable
+# Database Model
 
-A production-style economic intelligence platform that automatically collects Brazilian macroeconomic data, transforms it into actionable insights, visualizes economic trends, and generates predictive forecasts.
+The database follows a normalized schema that separates **raw indicators** collected from official APIs from **derived indicators** generated during the transformation stage.
 
-The project should showcase the complete data lifecycle and serve as a portfolio piece relevant for:
+This design preserves the original datasets while allowing additional calculated metrics to be generated independently.
 
-* Junior Data Analyst
-* Junior Data Scientist
-* Junior Data Engineer
-* Analytics Engineer
-* Risk Analytics positions
+```mermaid
+erDiagram
 
-This scope is intentionally modular, allowing each phase to be completed and published independently while still contributing to a cohesive end-to-end project.
+INDICATORS ||--o{ INDICATOR_VALUES : contains
+INDICATORS ||--o{ DERIVED_INDICATORS : generates
+DERIVED_INDICATORS ||--o{ DERIVED_VALUES : stores
 
+INDICATORS {
+    int indicator_id PK
+    string external_code
+    string indicator_name
+    string source
+    string frequency
+    string unit
+}
 
+INDICATOR_VALUES {
+    int id PK
+    int indicator_id FK
+    date date
+    numeric value
+}
 
+DERIVED_INDICATORS {
+    int derived_id PK
+    int base_indicator_id FK
+    string name
+    string formula_description
+}
 
+DERIVED_VALUES {
+    int id PK
+    int derived_id FK
+    date date
+    numeric value
+}
+```
+
+## Database Design
+
+| Table                  | Purpose                                                |
+| ---------------------- | ------------------------------------------------------ |
+| **indicators**         | Stores metadata describing every collected indicator.  |
+| **indicator_values**   | Stores historical observations for raw indicators.     |
+| **derived_indicators** | Stores metadata for calculated indicators.             |
+| **derived_values**     | Stores historical observations for derived indicators. |
+
+This separation preserves the original data while allowing reusable analytical metrics to coexist independently.
+
+---
+
+# Derived Indicators
+
+Additional analytical indicators are automatically generated during the transformation stage.
+
+Current derived metrics include:
+
+| Base Indicator        | Derived Metric           |
+| --------------------- | ------------------------ |
+| SELIC                 | Daily Variation          |
+| USD/BRL Exchange Rate | Daily Variation          |
+| IPCA                  | Year-over-Year Inflation |
+| INPC                  | Year-over-Year Inflation |
+| IGP-M                 | Year-over-Year Inflation |
+
+Derived indicators are stored separately from the original time series, ensuring data lineage and preserving raw observations.
+
+---
+
+# Automation
+
+The entire pipeline is orchestrated using **GitHub Actions**.
+
+Features include:
+
+* Scheduled execution
+* Manual execution
+* Secure credentials managed through GitHub Secrets
+* Fully automated database updates
+
+This ensures that the database remains synchronized with the latest official releases without requiring manual intervention.
+
+---
+
+# Local Execution
+
+Clone the repository.
+
+```bash
+git clone https://github.com/YukioK38/brazil-economic-data-pipeline.git
+```
+
+Create a virtual environment.
+
+```bash
+python -m venv .venv
+```
+
+Install dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
+Configure the database credentials in the `.env` file.
+
+Run the pipeline.
+
+```bash
+python main.py
+```
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+---
+
+# Contact
+
+**Fabio Kitsuwa**
+
+* GitHub: https://github.com/YukioK38
+* LinkedIn: https://linkedin.com/in/fabio-kitsuwa
